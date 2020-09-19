@@ -1,0 +1,88 @@
+using System;
+using System.Linq;
+using System.IO;
+using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution
+{
+    static void Main(string[] args)
+    {
+        int L = int.Parse(Console.ReadLine());
+        int H = int.Parse(Console.ReadLine());
+        string T = Console.ReadLine();
+        List<string> alph =new List<string>();
+        
+       for(int i = 0; i < H; i++)
+        {
+            string ROW = Console.ReadLine();
+           // Console.Error.WriteLine(ROW);
+            alph.Add(ROW);
+
+        }
+       List<List<string>> words = new List<List<string>>();
+        foreach( char letter in T)
+        {
+        List<string> sentence =new List<string>();
+        int nextLetter =0;
+        if(Char.IsLetter(letter))
+        {
+                byte[] c = Encoding.ASCII.GetBytes(letter.ToString().ToUpper());
+                nextLetter = (c[0]-65)*L;
+        }else{
+                nextLetter = 26;
+        }       
+        
+            // letter need to look for
+           // int startPoint = 
+          
+            for(var i=0;i<H;i++)
+            {
+                 string l="";
+                 // Build word matrix
+                for(var j=nextLetter;j<L+nextLetter;j++)
+                {
+                    l+=alph[i][j];
+                    
+                }
+                        
+                sentence.Add(l);
+                //Console.WriteLine(l);
+            }
+            words.Add(sentence);
+           // foreach(string i in sentence)
+           // Console.Error.WriteLine(i);
+        }
+       
+       
+
+      // for(var i=0;i<H;i++)// gothrough each word
+     //  {
+          
+           for(var i=0;i<H;i++)
+           {
+                string wordRow = "";
+                foreach (List<string> mat in words)
+                {
+                    wordRow+= mat[i];
+                }
+                Console.WriteLine(wordRow);
+           }
+       
+          /* for(var j=0;j<words[i].Count;j++)//each words row
+           {
+              wordRow +=words[i][i];
+           }*/
+       //    Console.WriteLine(words[i]);
+     //  }
+        
+        // Write an answer using Console.WriteLine()
+        // To debug: Console.Error.WriteLine("Debug messages...");*/
+
+    }
+}
